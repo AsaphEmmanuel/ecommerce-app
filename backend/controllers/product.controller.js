@@ -1,8 +1,11 @@
-export const getProducts = (req, res) => {
-  console.log('get products');
+import Product from '../models/product.model.js';
+
+export const getProducts = async (req, res) => {
+  const products = await Product.find();
+
   res.status(200).json({
     status: 'success',
-    data: {},
+    data: { products },
   });
 };
 
