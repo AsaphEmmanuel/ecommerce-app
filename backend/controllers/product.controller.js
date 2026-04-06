@@ -1,42 +1,41 @@
 import Product from '../models/product.model.js';
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find();
+  try {
+    const products = await Product.find();
 
-  res.status(200).json({
-    status: 'success',
-    data: { products },
-  });
+    res.status(200).json({
+      status: 'success',
+      data: { products },
+      count: products.length,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error: error.message,
+    });
+  }
 };
 
-export const createProduct = (req, res) => {
-  console.log('create product');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
-};
+export const getProduct = async (req, res) => {
+  try {
+    const product = await Product.findOne({ id: req.params.id });
 
-export const getProduct = (req, res) => {
-  console.log('get product');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
-};
+    if (!product) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'product not found',
+      });
+    }
 
-export const updateProduct = (req, res) => {
-  console.log('update product');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
-};
-
-export const deleteProduct = (req, res) => {
-  console.log('delete product');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
+    res.status(200).json({
+      status: 'success',
+      data: { product },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error: error.message,
+    });
+  }
 };

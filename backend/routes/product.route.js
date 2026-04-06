@@ -1,17 +1,7 @@
 import express from 'express';
-import {
-  getProducts,
-  createProduct,
-  getProduct,
-  updateProduct,
-  deleteProduct,
-} from '../controllers/product.controller.js';
+import { getProducts, getProduct } from '../controllers/product.controller.js';
 
 export const productRouter = express.Router();
 
-productRouter.route('/').get(getProducts).post(createProduct);
-productRouter
-  .route('/:id')
-  .get(getProduct)
-  .patch(updateProduct)
-  .delete(deleteProduct);
+productRouter.route('/').get(getProducts);
+productRouter.route('/:id').get(getProduct);

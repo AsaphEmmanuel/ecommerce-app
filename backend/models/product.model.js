@@ -4,6 +4,7 @@ const productSchema = new mongoose.Schema({
   id: {
     type: String,
     required: true,
+    unique: true,
   },
   image: {
     type: String,
@@ -21,7 +22,9 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  keywords: [String],
+  keywords: {
+    type: [String],
+  },
 });
 
 const Product = mongoose.model('Product', productSchema);
