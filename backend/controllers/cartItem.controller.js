@@ -1,6 +1,6 @@
 import CartItem from '../models/cartItem.model.js';
 
-export const getCartItems = async (req, res) => {
+export const getCartItems = async (req, res, next) => {
   try {
     const cartItems = await CartItem.find();
 
@@ -8,15 +8,12 @@ export const getCartItems = async (req, res) => {
       status: 'success',
       data: { cartItems },
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fail',
-      error: error.message,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-export const createCartItem = async (req, res) => {
+export const createCartItem = async (req, res, next) => {
   try {
     const newCartItem = await CartItem.create(req.body);
 
@@ -24,34 +21,43 @@ export const createCartItem = async (req, res) => {
       status: 'success',
       data: { newCartItem },
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fail',
-      error: error.message,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-export const getCartItem = async (req, res) => {
-  console.log('get cart-item');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
+export const getCartItem = async (req, res, next) => {
+  try {
+    console.log('get cart-item');
+    res.status(200).json({
+      status: 'success',
+      data: {},
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-export const updateCartItem = async (req, res) => {
-  console.log('update cart-item');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
+export const updateCartItem = async (req, res, next) => {
+  try {
+    console.log('update cart-item');
+    res.status(200).json({
+      status: 'success',
+      data: {},
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-export const deleteCartItem = async (req, res) => {
-  console.log('delete cart-item');
-  res.status(200).json({
-    status: 'success',
-    data: {},
-  });
+export const deleteCartItem = async (req, res, next) => {
+  try {
+    console.log('delete cart-item');
+    res.status(200).json({
+      status: 'success',
+      data: {},
+    });
+  } catch (err) {
+    next(err);
+  }
 };

@@ -1,6 +1,7 @@
 import Product from '../models/product.model.js';
+import AppError from '../utils/AppError.js';
 
-export const getProducts = async (req, res) => {
+export const getProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
 
@@ -9,33 +10,24 @@ export const getProducts = async (req, res) => {
       data: { products },
       count: products.length,
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fail',
-      error: error.message,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-export const getProduct = async (req, res) => {
+export const getProduct = async (req, res, next) => {
   try {
     const product = await Product.findOne({ id: req.params.id });
 
     if (!product) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'product not found',
-      });
+      return next(new AppError('Product not found', 404));
     }
 
     res.status(200).json({
       status: 'success',
       data: { product },
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fail',
-      error: error.message,
-    });
+  } catch (err) {
+    next(err);
   }
 };
