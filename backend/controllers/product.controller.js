@@ -7,8 +7,8 @@ export const getProducts = async (req, res, next) => {
 
     res.status(200).json({
       status: 'success',
-      data: { products },
       count: products.length,
+      data: { products },
     });
   } catch (err) {
     next(err);

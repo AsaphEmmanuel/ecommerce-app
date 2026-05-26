@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema(
     id: {
       type: String,
       required: [true, 'Product id is required'],
-      unique: [true],
+      unique: [true, 'Same id already exists'],
     },
 
     image: {
