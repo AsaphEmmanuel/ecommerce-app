@@ -3,17 +3,26 @@ import mongoose from 'mongoose';
 const cartItemSchema = new mongoose.Schema({
   id: {
     type: String,
-    required: true,
-    unique: true,
+    required: [true, 'CartItem id is required'],
+    unique: [true, 'Same id already exists'],
   },
+
   quantity: {
     type: Number,
-    required: true,
-    min: 1,
+    required: [true, 'CartItem quantity id is required'],
+    min: [1, 'quantity must be at least 1'],
+    max: [100, 'quantity cannot exceed 100'],
   },
+
   deliveryOptionId: {
     type: String,
-    required: true,
+    required: [true, 'CartItem deliveryOptionId id is required'],
+    validate: {
+      validator: function (value) {
+        return value.length === 1;
+      },
+      message: 'deliveryOptionId must be exactly 1 character',
+    },
   },
 });
 

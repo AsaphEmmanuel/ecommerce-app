@@ -28,6 +28,7 @@ const productSchema = new mongoose.Schema(
         min: [0, 'Rating cannot be below 0'],
         max: [5, 'Rating cannot exceed 5'],
       },
+
       count: {
         type: Number,
         required: [true, 'Rating count is required'],
