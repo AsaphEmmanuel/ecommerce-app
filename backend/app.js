@@ -8,6 +8,7 @@ const app = express();
 
 app.use('/api/products', productRouter);
 app.use('/api/cart-items', cartItemRouter);
+app.use('/api/users', cartItemRouter);
 
 app.all('*splat', (req, res, next) => {
   next(new AppError(`Page not found. Can't find ${req.originalUrl}`, 404));
