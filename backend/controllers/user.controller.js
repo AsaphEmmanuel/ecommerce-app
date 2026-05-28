@@ -15,7 +15,12 @@ export const getUsers = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body);
+    const newUser = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      password: req.body.password,
+      passwordConfirm: req.body.passwordConfirm,
+    });
 
     res.status(200).json({
       status: 'success',

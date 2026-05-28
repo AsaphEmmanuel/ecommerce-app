@@ -6,6 +6,8 @@ import { globalErrorHandler } from './controllers/error.controller.js';
 
 const app = express();
 
+app.use(express.json());
+
 app.use('/api/products', productRouter);
 app.use('/api/cart-items', cartItemRouter);
 app.use('/api/users', cartItemRouter);
