@@ -10,6 +10,6 @@ userRouter
 
 userRouter
   .route('/:id')
-  .get(userController)
+  .get(userController.getUser)
   .delete(userController.deleteUser)
   .patch(userController.updateUser);
