@@ -1,9 +1,10 @@
 import CheckmarkIcon from '../../assets/images/icons/checkmark.png'
+import { Fragment } from 'react';
 import './Product.css';
 
 export const Product = () => {
   return (
-    <>
+    <Fragment>
       <div className="product-container">
         <div className="product-image-container">
           <img className="product-image"
@@ -52,6 +53,6 @@ export const Product = () => {
           Add to Cart
         </button>
       </div>
-    </>
+    </Fragment>
   );
 };

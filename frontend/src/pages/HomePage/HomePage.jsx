@@ -1,20 +1,17 @@
 import { Header } from '../../components/Header';
-import { Product } from './Product';
+import { ProductsGrid } from './ProductsGrid';
+import { Fragment } from 'react';
 import '../../index.css';
 import './HomePage.css';
 
 export const HomePage = () => {
   return (
-    <>
+    <Fragment>
       <Header />
 
       <div className="home-page">
-        <div className="products-grid">
-          <Product />
-          <Product />
-          <Product />
-        </div>
+        <ProductsGrid />
       </div>
-    </>
+    </Fragment>
   );
 };
