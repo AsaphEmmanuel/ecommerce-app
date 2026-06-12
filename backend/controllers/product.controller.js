@@ -17,7 +17,7 @@ export const getProducts = async (req, res, next) => {
 
 export const getProduct = async (req, res, next) => {
   try {
-    const product = await Product.findOne({ id: req.params.id });
+    const product = await Product.findById(req.params.id);
 
     if (!product) {
       return next(new AppError('Product not found', 404));
