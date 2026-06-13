@@ -8,8 +8,9 @@ import { globalErrorHandler } from './controllers/error.controller.js';
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+app.use('/images', express.static('images'));
 
 app.use('/api/products', productRouter);
 app.use('/api/cart-items', cartItemRouter);

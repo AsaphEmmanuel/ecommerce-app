@@ -3,12 +3,13 @@ import { Fragment } from 'react';
 import './Product.css';
 
 export const Product = ({ product }) => {
+  console.log(product);
   return (
     <Fragment>
       <div className="product-container">
         <div className="product-image-container">
           <img className="product-image"
-            src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+            src={`http://localhost:5000/${product.image}`} />
         </div>
 
         <div className="product-name limit-text-to-2-lines">
@@ -17,14 +18,14 @@ export const Product = ({ product }) => {
 
         <div className="product-rating-container">
           <img className="product-rating-stars"
-            src="images/ratings/rating-45.png" />
+            src={`http://localhost:5000/images/ratings/rating-${(product.rating.stars * 10)}.png`} />
           <div className="product-rating-count link-primary">
-            87
+            {product.rating.count}
           </div>
         </div>
 
         <div className="product-price">
-          $10.90
+          ${(product.priceCents / 100).toFixed(2)}
         </div>
 
         <div className="product-quantity-container">
