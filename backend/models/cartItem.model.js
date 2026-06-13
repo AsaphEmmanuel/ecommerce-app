@@ -1,12 +1,6 @@
 import mongoose from 'mongoose';
 
 const cartItemSchema = new mongoose.Schema({
-  productId: {
-    type: String,
-    required: [true, 'productId is required'],
-    unique: [true, 'Same productId already exists'],
-  },
-
   quantity: {
     type: Number,
     required: [true, 'CartItem quantity id is required'],
