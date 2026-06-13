@@ -2,12 +2,6 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
   {
-    id: {
-      type: String,
-      required: [true, 'Product id is required'],
-      unique: [true, 'Same id already exists'],
-    },
-
     image: {
       type: String,
       required: [true, 'Product image is required'],

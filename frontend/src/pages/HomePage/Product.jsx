@@ -2,7 +2,7 @@ import CheckmarkIcon from '../../assets/images/icons/checkmark.png'
 import { Fragment } from 'react';
 import './Product.css';
 
-export const Product = () => {
+export const Product = ({ product }) => {
   return (
     <Fragment>
       <div className="product-container">
@@ -12,7 +12,7 @@ export const Product = () => {
         </div>
 
         <div className="product-name limit-text-to-2-lines">
-          Black and Gray Athletic Cotton Socks - 6 Pairs
+          {product.name}
         </div>
 
         <div className="product-rating-container">

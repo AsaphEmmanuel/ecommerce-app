@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
 import app from './app.js';
-import { connectDB } from './config/db.js';
+import { connectDatabase } from './config/database.js';
 
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    await connectDB();
+    await connectDatabase();
 
     app.listen(PORT, () => {
       console.log(

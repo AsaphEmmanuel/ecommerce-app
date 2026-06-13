@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
-import { connectDB } from '../config/db.js';
+import { connectDatabase } from '../config/database.js';
 import Product from '../models/product.model.js';
 import fs from 'fs/promises';
 import path from 'path';
@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-await connectDB();
+await connectDatabase();
 
 const products = JSON.parse(
   await fs.readFile(`${__dirname}/products.json`, 'utf-8'),
