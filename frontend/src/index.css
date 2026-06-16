@@ -1,5 +1,5 @@
 body {
-  font-family: Roboto, Arial;
+  font-family: Poppins, Roboto;
   color: rgb(33, 33, 33);
   margin: 0;
 }
@@ -20,7 +20,7 @@ select {
 input,
 select,
 button {
-  font-family: Roboto, Arial;
+  font-family: Poppins, Roboto;
 }
 
 .button-primary {
