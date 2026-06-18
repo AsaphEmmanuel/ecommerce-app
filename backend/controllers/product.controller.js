@@ -1,5 +1,5 @@
 import Product from '../models/product.model.js';
-import AppError from '../utils/AppError.js';
+import AppError from '../utils/appError.js';
 
 export const getProducts = async (req, res, next) => {
   try {

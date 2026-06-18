@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import AppError from './utils/AppError.js';
+import AppError from './utils/appError.js';
 import { productRouter } from './routes/product.route.js';
 import { cartItemRouter } from './routes/cartItem.route.js';
 import { userRouter } from './routes/user.route.js';
