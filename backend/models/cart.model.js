@@ -1,16 +1,19 @@
 import mongoose from 'mongoose';
 
-const cartItemSchema = new mongoose.Schema({
+const cartSchema = new mongoose.Schema({
+  product: {
+    type: String,
+  },
   quantity: {
     type: Number,
-    required: [true, 'CartItem quantity id is required'],
+    required: [true, 'Cart quantity id is required'],
     min: [1, 'quantity must be at least 1'],
     max: [100, 'quantity cannot exceed 100'],
   },
 
   deliveryOptionId: {
     type: String,
-    required: [true, 'CartItem deliveryOptionId id is required'],
+    required: [true, 'Cart deliveryOptionId id is required'],
     validate: {
       validator: function (value) {
         return value.length === 1;
@@ -20,6 +23,6 @@ const cartItemSchema = new mongoose.Schema({
   },
 });
 
-const CartItem = mongoose.model('CartItem', cartItemSchema);
+const Cart = mongoose.model('Cart', cartSchema);
 
-export default CartItem;
+export default Cart;
