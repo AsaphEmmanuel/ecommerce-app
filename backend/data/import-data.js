@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
 import { connectDatabase } from '../config/database.js';
 import Product from '../models/product.model.js';
+import Cart from '../models/cart.model.js';
+import User from '../models/user.model.js';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -14,6 +16,45 @@ await connectDatabase();
 const products = JSON.parse(
   await fs.readFile(`${__dirname}/products.json`, 'utf-8'),
 );
+const cart = JSON.parse(
+  await fs.readFile(`${__dirname}/cart.json`, 'utf-8'),
+);
+const users = JSON.parse(
+  await fs.readFile(`${__dirname}/users.json`, 'utf-8'),
+);
+
+const importAll = async () => {
+  try {
+    await Product.deleteMany();
+    await Cart.deleteMany();
+    await User.deleteMany();
+
+    await Product.insertMany(products);
+    await Cart.insertMany(cart);
+    await User.insertMany(users);
+
+
+    console.log('All Data Imported!');
+    process.exit();
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    process.exit(1);
+  }
+};
+
+const deleteAll = async () => {
+  try {
+    await Product.deleteMany();
+    await Cart.deleteMany();
+    await User.deleteMany();
+
+    console.log('All Deleted!');
+    process.exit();
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    process.exit(1);
+  }
+};
 
 const importProducts = async () => {
   try {
@@ -28,11 +69,11 @@ const importProducts = async () => {
   }
 };
 
-const destroyProducts = async () => {
+const deleteProducts = async () => {
   try {
     await Product.deleteMany();
 
-    console.log('Products Destroyed!');
+    console.log('Products Data Deleted!');
     process.exit();
   } catch (error) {
     console.error(`Error: ${error}`);
@@ -40,8 +81,72 @@ const destroyProducts = async () => {
   }
 };
 
-if (process.argv[2] === '-i') {
+const importCart = async () => {
+  try {
+    await Cart.deleteMany();
+    await Cart.insertMany(cart);
+
+
+    console.log('Cart Data Imported!');
+    process.exit();
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    process.exit(1);
+  }
+};
+
+const deleteCart = async () => {
+  try {
+    await Cart.deleteMany();
+
+    console.log('Cart Data Deleted!');
+    process.exit();
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    process.exit(1);
+  }
+};
+
+const importUsers = async () => {
+  try {
+    await User.deleteMany();
+    await User.insertMany(users);
+
+
+    console.log('Users Data Imported!');
+    process.exit();
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    process.exit(1);
+  }
+};
+
+const deleteUsers = async () => {
+  try {
+    await User.deleteMany();
+
+    console.log('Users Data Deleted!');
+    process.exit();
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    process.exit(1);
+  }
+};
+
+if (process.argv[2] === '-i-p') {
   importProducts();
-} else if (process.argv[2] === '-d') {
-  destroyProducts();
+} else if (process.argv[2] === '-d-p') {
+  deleteProducts();
+} else if (process.argv[2] === '-i-c') {
+  importCart();
+} else if (process.argv[2] === '-d-c') {
+  deleteCart();
+} else if (process.argv[2] === '-i-u') {
+  importUsers();
+} else if (process.argv[2] === '-d-u') {
+  deleteUsers();
+} else if (process.argv[2] === '-i-a') {
+  importAll();
+} else if (process.argv[2] === '-d-a') {
+  deleteAll();
 }

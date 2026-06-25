@@ -1,26 +1,38 @@
 import mongoose from 'mongoose';
 
 const cartSchema = new mongoose.Schema({
-  product: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
-  quantity: {
-    type: Number,
-    required: [true, 'Cart quantity id is required'],
-    min: [1, 'quantity must be at least 1'],
-    max: [100, 'quantity cannot exceed 100'],
-  },
-
-  deliveryOptionId: {
-    type: String,
-    required: [true, 'Cart deliveryOptionId id is required'],
-    validate: {
-      validator: function (value) {
-        return value.length === 1;
+  items: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true,
       },
-      message: 'deliveryOptionId must be exactly 1 character',
+      quantity: {
+        type: Number,
+        required: [true, 'Cart quantity is required'],
+        min: [1, 'quantity must be at least 1'],
+        max: [100, 'quantity cannot exceed 100'],
+      },
+      deliveryOptionId: {
+        type: String,
+        required: [true, 'Cart deliveryOptionId is required'],
+        validate: {
+          validator: function (value) {
+            return value.length === 1;
+          },
+          message: 'deliveryOptionId must be exactly 1 character',
+        },
+      },
     },
-  },
+  ],
+}, {
+  collection: 'cart'
 });
 
 const Cart = mongoose.model('Cart', cartSchema);

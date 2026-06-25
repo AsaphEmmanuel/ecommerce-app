@@ -5,11 +5,11 @@ export const cartRouter = express.Router();
 
 cartRouter
   .route('/')
-  .get(cartController.getCart)
-  .post(cartController.createCart);
+  .get(cartController.getCartItems)
+// .post(cartController.createCart);
 
-cartRouter
-  .route('/:id')
-  .get(cartController.getCart)
-  .patch(cartController.updateCart)
-  .delete(cartController.deleteCart);
+// cartRouter
+// .route('/:id')
+// .get(cartController.getCart)
+// .patch(cartController.updateCart)
+// .delete(cartController.deleteCart);

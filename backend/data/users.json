@@ -1,0 +1,37 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "password": "password123",
+        "passwordConfirm": "password123"
+    },
+    {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "jane.smith@example.com",
+        "password": "password123",
+        "passwordConfirm": "password123"
+    },
+    {
+        "firstName": "Michael",
+        "lastName": "Johnson",
+        "email": "michael.johnson@example.com",
+        "password": "password123",
+        "passwordConfirm": "password123"
+    },
+    {
+        "firstName": "Sarah",
+        "lastName": "Williams",
+        "email": "sarah.williams@example.com",
+        "password": "password123",
+        "passwordConfirm": "password123"
+    },
+    {
+        "firstName": "David",
+        "lastName": "Brown",
+        "email": "david.brown@example.com",
+        "password": "password123",
+        "passwordConfirm": "password123"
+    }
+]
